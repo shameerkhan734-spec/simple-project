@@ -5,24 +5,16 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/yourusername/website.git'
+                git 'https://github.com/shameerkhan734-spec/simple-project.git'
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy to Apache') {
             steps {
                 sh '''
                 rm -rf /var/www/html/*
                 cp -r * /var/www/html/
                 '''
-stage('Deploy') {
-    steps {
-        sh '''
-        pkill -f "python3 -m http.server" || true
-        nohup python3 -m http.server 8081 &
-        '''
-    }
-}
             }
         }
     }
