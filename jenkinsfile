@@ -15,6 +15,14 @@ pipeline {
                 rm -rf /var/www/html/*
                 cp -r * /var/www/html/
                 '''
+stage('Deploy') {
+    steps {
+        sh '''
+        pkill -f "python3 -m http.server" || true
+        nohup python3 -m http.server 8081 &
+        '''
+    }
+}
             }
         }
     }
