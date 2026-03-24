@@ -1,0 +1,22 @@
+
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/shameerkhan734-spec/simple-project.git'
+            }
+        }
+
+        stage('Deploy to Apache') {
+            steps {
+                sh '''
+                rm -rf /var/www/html/*
+                cp -r * /var/www/html/
+                '''
+            }
+        }
+    }
+}
